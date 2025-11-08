@@ -8,12 +8,13 @@ app.use(cors()); // Allow cross-origin requests
 app.use(express.json()); // Allow app to accept JSON
 
 // === In-Memory Database ===
+// === In-Memory Database ===
 let mockProducts = [
-  { id: 1, name: 'Classic Tee', price: 25.00, img: 'https://via.placeholder.com/150/0000FF/808080?text=Tee' },
-  { id: 2, name: 'Leather Jacket', price: 150.00, img: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Jacket' },
-  { id: 3, name: 'Slim Jeans', price: 60.00, img: 'https://via.placeholder.com/150/008000/FFFFFF?text=Jeans' },
-  { id: 4, name: 'Canvas Sneakers', price: 45.00, img: 'https://via.placeholder.com/150/FFFF00/000000?text=Sneakers' },
-  { id: 5, name: 'Wool Scarf', price: 30.00, img: 'https://via.placeholder.com/150/800080/FFFFFF?text=Scarf' },
+  { id: 1, name: 'Women Jeans', price: 1800.00, img: 'https://via.placeholder.com/150/FF9933/FFFFFF?text=Women Jeans' },
+  { id: 2, name: 'Oversize Tshirt', price: 1000.00, img: 'https://via.placeholder.com/150/138808/FFFFFF?text=Oversize Tshirt' },
+  { id: 3, name: 'Men\'s Perfume', price: 700.00, img: 'https://via.placeholder.com/150/E3B45B/000000?text=Mens perfume' },
+  { id: 4, name: 'Men\'s Jeans', price: 950.00, img: 'https://via.placeholder.com/150/8D5524/FFFFFF?text=Mens Jeans' },
+  { id: 5, name: 'Sliders', price: 1200.00, img: 'https://via.placeholder.com/150/2C3E50/FFFFFF?text=Sliders' },
 ];
 
 let cart = []; // { id, productId, name, price, qty }
@@ -71,7 +72,7 @@ app.delete('/api/cart/:id', (req, res) => {
 });
 
 // 5. POST /api/checkout
-app.post('/api/checkout', (req, a) => {
+app.post('/api/checkout', (req, res) =>  {
   const { cartItems, userDetails } = req.body;
 
   if (!cartItems || cartItems.length === 0) {
